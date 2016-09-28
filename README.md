@@ -1,10 +1,10 @@
-# handlebars-cmd
+# handlebars-cli
 
 Invoke handlebars from the commandline. 
 
 Example:
 
-    echo "Hello {{name}}" | handlebars --name Test
+    echo "Hello {{name}}" | handlebars-cli --name Test
 
 Output:
 
@@ -16,15 +16,15 @@ interpreted as an object.
 
 You can also pass a JSON file:
 
-    handlebars file.json < template.hbs > output.txt
+    handlebars-cli data.json < template.tpl > output.txt
 
 # install
 
-    npm install -g handlebars-cmd
+    npm install -g handlebars-cli
 
 # include helper
 
-handlebars-cmd comes with a built-in helper `#include`
+handlebars-cli comes with a built-in helper `#include`
     
     {{{include 'api.md'}}}
 
