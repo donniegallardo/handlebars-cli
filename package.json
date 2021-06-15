@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "handlebars": "^4.7.7",
+    "handlebars-helpers": "^0.10.0",
     "optimist": "^0.5.2"
   },
   "devDependencies": {},

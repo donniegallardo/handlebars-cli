@@ -1,35 +1,45 @@
 #!/usr/bin/env node
+var argv = process.argv.slice(2);
+
 
 var fs = require('fs'),
-    args = require('optimist').argv,
-    hbs = require('handlebars');
+args = require('optimist').argv,
+hbs = require('handlebars');
 
-var argv = process.argv.slice(2);
+
 if (!argv[0] || argv[0] == "--help") {
-    console.log(`Usage:
+    console.log(`Usage: gih [ [data.json]  | [ --KEY val ...] [[--t <TEMPLATE>]|<<<] [[--o <FILEOUT>]| >]
+        --t or pipe in 
+        --o or pipe out
+        one datafile or keys
+-------------------------------------------
+Example: 
+gih --t template.tpl --name allo --name bla > outfile.js
+gih --t template.tpl --name allo --name bla --o outfile.js
 cat template.handlebars | gih --KEY1 VALUE1 --KEY2 VALUE2 > outfile.ext
 cat _render_TEMPLATE.sh.handlebars | gih --MODELNAME model_gia-ds-daliwill-210123-v02_new > render.sh 
 gih --STCGOAL "That is my goal"<<<$(cat template.sh.handlebars)
-`);
+-------------------------------------------`);
     process.exit(1)
 }
 var templateFile = "";
 var fileout = "";
 //console.log("args0 :" + args._[0]);
 //console.log("args1 :" + args._[1]);
-
-if (args._[1] && fs.existsSync(args._[1])) {
-    templateFile = args._[1];
-    //  console.log(`            //@state We have out template as second arg    `);
-    for (var key in args) {
+for (var key in args) {
         try {
-            if (key == "out") fileout = args[key];
-            args[key] = JSON.parse(args[key]);
+            if (key == "o") 
+            fileout = args[key];
+        } catch (e) {
+        }
+        try {
+            if (key == "t") 
+            templateFile = args[key];
         } catch (e) {
         }
     }
-    //console.log(args);
-}
+
+
 //console.log(fileout);
 if (args._.length) {
     try {
@@ -77,17 +87,23 @@ function handle(tmpl, args) {
 
 if (templateFile == "")
     readStream(process.stdin, function (err, tmpl) {
-        process.stdout.write(handle(tmpl, args));
+        doOutput(tmpl);
+        //process.stdout.write(handle(tmpl, args));
     });
 else {
     // console.log("We wont use stream");
     readTemplate(function (tmpl) {
-        if (fileout != "") {
-            fs.writeFileSync(fileout, handle(tmpl, args));
-            console.log("Written " + fileout);
-        }
-        else
-            process.stdout.write(handle(tmpl, args));
+        doOutput(tmpl);
     });
+}
+
+function doOutput(tmpl) {
+    if (fileout != "") {
+        fs.writeFileSync(fileout, handle(tmpl, args));
+        console.log("Written " + fileout);
+    }
+
+    else
+        process.stdout.write(handle(tmpl, args));
 }
 
