@@ -1,14 +1,14 @@
 {
-  "name": "handlebars-cli",
+  "name": "gih",
   "version": "0.0.1",
-  "description": "CLI for Handlebars",
+  "description": "Guill CLI for Handlebars",
   "main": "index.js",
   "bin": {
-    "handlebars-cli": "index.js"
+    "gih": "index.js"
   },
   "dependencies": {
-    "handlebars": "^4.0.5",
-    "optimist": "^0.6.1"
+    "handlebars": "^4.7.7",
+    "optimist": "^0.5.2"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/donniegallardo/handlebars-cli.git"
+    "url": "git+https://github.com/GuillaumeIsabelle/gih.git"
   },
   "keywords": [
     "handlebars",
@@ -24,9 +24,10 @@
     "cli"
   ],
   "author": "dpg",
+  "publisher": "Guillaume Isabelle",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/donniegallardo/handlebars-cli/issues"
+    "url": "https://github.com/GuillaumeIsabelle/gih/issues"
   },
-  "homepage": "https://github.com/donniegallardo/handlebars-cli#readme"
+  "homepage": "https://github.com/GuillaumeIsabelle/gih#readme"
 }
