@@ -1,5 +1,5 @@
 {{#each this}}
 	{{#each this as |value key|}}
-		{{@key}}: {{value}}
+	That is one value and key in here:	{{@key}}: {{value}}
 	{{/each}}
 {{/each}}
