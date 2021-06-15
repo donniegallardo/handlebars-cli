@@ -1,6 +1,6 @@
 {
   "name": "gih",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Guill CLI for Handlebars",
   "main": "index.js",
   "bin": {
